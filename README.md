@@ -59,7 +59,6 @@ The `IsNestedBuild` property is used to prevent infinite recursion.
     <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
   </Exec>
   <Copy SourceFiles="@(BootStrapFiles)" DestinationFolder="$(OutputPath)" />
-
 </Target>
 ```
 
@@ -79,6 +78,7 @@ MyConsole.runtimeconfig.dev.json
 MyConsole.runtimeconfig.json
 NodaTime.dll
 ```
+
 
 ## Full csproj
 
@@ -109,7 +109,6 @@ NodaTime.dll
       <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
     </Exec>
     <Copy SourceFiles="@(BootStrapFiles)" DestinationFolder="$(OutputPath)" />
-
   </Target>
 
 </Project>
