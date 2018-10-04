@@ -1,5 +1,3 @@
-# NetCoreConsole
-
 This repo shows who to build a netcore console app, including all files needed to deploy to a system with netcore already installed.
 
 This sample targets one dependency (NodaTime) for illustrative purposes
