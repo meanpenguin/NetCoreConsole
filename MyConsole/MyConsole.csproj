@@ -24,7 +24,6 @@
       <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
     </Exec>
     <Copy SourceFiles="@(BootStrapFiles)" DestinationFolder="$(OutputPath)" />
-
   </Target>
 
 </Project>
