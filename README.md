@@ -92,6 +92,8 @@ NodaTime.dll
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Forced pdbs to be copied to the output directory. see https://github.com/dotnet/sdk/issues/1458 -->
+    <PackageReference Include="SourceLink.Copy.PdbFiles" Version="2.8.3" PrivateAssets="All" />
     <PackageReference Include="NodaTime" Version="2.4.0" />
   </ItemGroup>
 
