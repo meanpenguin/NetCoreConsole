@@ -2,7 +2,9 @@ This repo shows who to build a netcore console app, including all files needed t
 
 This sample targets one dependency (NodaTime) for illustrative purposes
 
+
 ## Moving pieces
+
 
 ### CopyLocalLockFileAssemblies
 
@@ -14,9 +16,10 @@ The project needs to have `CopyLocalLockFileAssemblies` set to `true`.
 
 This will force all the package dependencies to be copied to the output.
 
+
 ### Primary build
 
-the primary build will produce the following files
+The primary build will produce the following files:
 
 ```
 MyConsole.dll
@@ -59,6 +62,7 @@ The `IsNestedBuild` property is used to prevent infinite recursion.
 
 </Target>
 ```
+
 
 ## Final output
 
