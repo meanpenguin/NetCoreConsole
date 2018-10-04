@@ -52,12 +52,17 @@ The `IsNestedBuild` property is used to prevent infinite recursion.
   <ItemGroup>
     <BootStrapFiles Include="$(Temp)hostpolicy.dll;$(Temp)$(ProjectName).exe;$(Temp)hostfxr.dll;" />
   </ItemGroup>
-  <Target Name="GenerateNetcoreExe" AfterTargets="Build" Condition="'$(IsNestedBuild)' != 'true'">
+  <Target Name="GenerateNetcoreExe"
+          AfterTargets="Build"
+          Condition="$(IsNestedBuild) != true">
     <RemoveDir Directories="$(Temp)" />
-    <Exec ConsoleToMSBuild="true" Command="dotnet build $(ProjectPath) -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true --output $(Temp)">
-      <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
+    <Exec ConsoleToMSBuild="true"
+          Command="dotnet build $(ProjectPath) -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true --output $(Temp)">
+      <Output TaskParameter="ConsoleOutput"
+              PropertyName="OutputOfExec" />
     </Exec>
-    <Copy SourceFiles="@(BootStrapFiles)" DestinationFolder="$(OutputPath)" />
+    <Copy SourceFiles="@(BootStrapFiles)"
+          DestinationFolder="$(OutputPath)" />
     <RemoveDir Directories="$(Temp)" />
   </Target>
 ```
@@ -103,12 +108,17 @@ NodaTime.dll
   <ItemGroup>
     <BootStrapFiles Include="$(Temp)hostpolicy.dll;$(Temp)$(ProjectName).exe;$(Temp)hostfxr.dll;" />
   </ItemGroup>
-  <Target Name="GenerateNetcoreExe" AfterTargets="Build" Condition="'$(IsNestedBuild)' != 'true'">
+  <Target Name="GenerateNetcoreExe"
+          AfterTargets="Build"
+          Condition="$(IsNestedBuild) != true">
     <RemoveDir Directories="$(Temp)" />
-    <Exec ConsoleToMSBuild="true" Command="dotnet build $(ProjectPath) -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true --output $(Temp)">
-      <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
+    <Exec ConsoleToMSBuild="true"
+          Command="dotnet build $(ProjectPath) -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true --output $(Temp)">
+      <Output TaskParameter="ConsoleOutput"
+              PropertyName="OutputOfExec" />
     </Exec>
-    <Copy SourceFiles="@(BootStrapFiles)" DestinationFolder="$(OutputPath)" />
+    <Copy SourceFiles="@(BootStrapFiles)"
+          DestinationFolder="$(OutputPath)" />
     <RemoveDir Directories="$(Temp)" />
   </Target>
 
