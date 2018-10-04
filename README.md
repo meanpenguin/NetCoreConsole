@@ -40,7 +40,7 @@ A secondary nested build is used to produce the missing bootstrap and hosting fi
 It effectively executes the following command:
 
 ```
- dotnet build MyConsole.csproj -r win-x64 /p:CopyLocalLockFileAssemblies=true;IsNestedBuild=true
+ dotnet build MyConsole.csproj -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true
 ```
 
 The `IsNestedBuild` property is used to prevent infinite recursion. 
