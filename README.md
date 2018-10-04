@@ -29,7 +29,8 @@ MyConsole.deps.json
 MyConsole.runtimeconfig.dev.json
 MyConsole.runtimeconfig.json
 ```
-Note that is it missing the bootstrap exe `MyConsole.exe` and the host polciy and host resolver files.
+
+Note that is it missing the bootstrap exe `MyConsole.exe` and the host policy and host resolver files.
 
 
 ### Secondary build
@@ -48,11 +49,9 @@ The `IsNestedBuild` property is used to prevent infinite recursion.
   <PropertyGroup>
     <Temp>$(OutputPath)\nestedBuild\</Temp>
   </PropertyGroup>
-
   <ItemGroup>
     <BootStrapFiles Include="$(Temp)hostpolicy.dll;$(Temp)$(ProjectName).exe;$(Temp)hostfxr.dll;" />
   </ItemGroup>
-
   <Target Name="GenerateNetcoreExe" AfterTargets="Build" Condition="'$(IsNestedBuild)' != 'true'">
     <RemoveDir Directories="$(Temp)" />
     <Exec ConsoleToMSBuild="true" Command="dotnet build $(ProjectPath) -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true --output $(Temp)">
@@ -101,11 +100,9 @@ NodaTime.dll
   <PropertyGroup>
     <Temp>$(OutputPath)\nestedBuild\</Temp>
   </PropertyGroup>
-
   <ItemGroup>
     <BootStrapFiles Include="$(Temp)hostpolicy.dll;$(Temp)$(ProjectName).exe;$(Temp)hostfxr.dll;" />
   </ItemGroup>
-
   <Target Name="GenerateNetcoreExe" AfterTargets="Build" Condition="'$(IsNestedBuild)' != 'true'">
     <RemoveDir Directories="$(Temp)" />
     <Exec ConsoleToMSBuild="true" Command="dotnet build $(ProjectPath) -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true --output $(Temp)">
