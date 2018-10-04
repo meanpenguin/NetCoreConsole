@@ -25,6 +25,7 @@ The primary build will produce the following files:
 MyConsole.dll
 MyConsole.pdb
 NodaTime.dll
+NodaTime.pdb
 MyConsole.deps.json
 MyConsole.runtimeconfig.dev.json
 MyConsole.runtimeconfig.json
@@ -82,6 +83,7 @@ MyConsole.pdb
 MyConsole.runtimeconfig.dev.json
 MyConsole.runtimeconfig.json
 NodaTime.dll
+NodaTime.pdb
 ```
 
 
