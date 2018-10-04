@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <Temp>$(SolutionDir)\packaging\</Temp>
+    <Temp>$(OutputPath)\nestedBuild\</Temp>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +26,7 @@
       <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
     </Exec>
     <Copy SourceFiles="@(BootStrapFiles)" DestinationFolder="$(OutputPath)" />
+    <RemoveDir Directories="$(Temp)" />
   </Target>
 
 </Project>
