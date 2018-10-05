@@ -1,4 +1,4 @@
-This repo shows who to build a netcore console app, including all files needed to deploy to a system with netcore already installed.
+This shows how to build a netcore console app, including all files needed to deploy to a system with netcore already installed.
 
 This sample targets one dependency (NodaTime) for illustrative purposes
 
@@ -47,25 +47,25 @@ It effectively executes the following command:
 The `IsNestedBuild` property is used to prevent infinite recursion. 
 
 ```xml
-  <PropertyGroup>
-    <Temp>$(OutputPath)\nestedBuild\</Temp>
-  </PropertyGroup>
-  <ItemGroup>
-    <BootStrapFiles Include="$(Temp)hostpolicy.dll;$(Temp)$(ProjectName).exe;$(Temp)hostfxr.dll;" />
-  </ItemGroup>
-  <Target Name="GenerateNetcoreExe"
-          AfterTargets="Build"
-          Condition="$(IsNestedBuild) != true">
-    <RemoveDir Directories="$(Temp)" />
-    <Exec ConsoleToMSBuild="true"
-          Command="dotnet build $(ProjectPath) -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true --output $(Temp)">
-      <Output TaskParameter="ConsoleOutput"
-              PropertyName="OutputOfExec" />
-    </Exec>
-    <Copy SourceFiles="@(BootStrapFiles)"
-          DestinationFolder="$(OutputPath)" />
-    <RemoveDir Directories="$(Temp)" />
-  </Target>
+<PropertyGroup>
+  <NestedBuild>$(TargetDir)\nestedBuild\</NestedBuild>
+</PropertyGroup>
+<ItemGroup>
+  <BootStrapFiles Include="$(NestedBuild)hostpolicy.dll;$(NestedBuild)$(ProjectName).exe;$(NestedBuild)hostfxr.dll;" />
+</ItemGroup>
+<Target Name="GenerateNetcoreExe"
+        AfterTargets="Build"
+        Condition="$(IsNestedBuild) != true">
+  <RemoveDir Directories="$(NestedBuild)" />
+  <Exec ConsoleToMSBuild="true"
+        Command="dotnet build $(ProjectPath) -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true --output $(NestedBuild)">
+    <Output TaskParameter="ConsoleOutput"
+            PropertyName="OutputOfExec" />
+  </Exec>
+  <Copy SourceFiles="@(BootStrapFiles)"
+        DestinationFolder="$(OutputPath)" />
+  <RemoveDir Directories="$(NestedBuild)" />
+</Target>
 ```
 
 
@@ -105,23 +105,23 @@ NodaTime.pdb
   </ItemGroup>
 
   <PropertyGroup>
-    <Temp>$(OutputPath)\nestedBuild\</Temp>
+    <NestedBuild>$(TargetDir)\nestedBuild\</NestedBuild>
   </PropertyGroup>
   <ItemGroup>
-    <BootStrapFiles Include="$(Temp)hostpolicy.dll;$(Temp)$(ProjectName).exe;$(Temp)hostfxr.dll;" />
+    <BootStrapFiles Include="$(NestedBuild)hostpolicy.dll;$(NestedBuild)$(ProjectName).exe;$(NestedBuild)hostfxr.dll;" />
   </ItemGroup>
   <Target Name="GenerateNetcoreExe"
           AfterTargets="Build"
           Condition="$(IsNestedBuild) != true">
-    <RemoveDir Directories="$(Temp)" />
+    <RemoveDir Directories="$(NestedBuild)" />
     <Exec ConsoleToMSBuild="true"
-          Command="dotnet build $(ProjectPath) -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true --output $(Temp)">
+          Command="dotnet build $(ProjectPath) -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true --output $(NestedBuild)">
       <Output TaskParameter="ConsoleOutput"
               PropertyName="OutputOfExec" />
     </Exec>
     <Copy SourceFiles="@(BootStrapFiles)"
           DestinationFolder="$(OutputPath)" />
-    <RemoveDir Directories="$(Temp)" />
+    <RemoveDir Directories="$(NestedBuild)" />
   </Target>
 
 </Project>
