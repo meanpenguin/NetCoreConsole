@@ -4,31 +4,29 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="NodaTime" Version="2.4.0" />
-    <!-- Forced pdbs to be copied to the output directory. see https://github.com/dotnet/sdk/issues/1458 -->
-    <PackageReference Include="SourceLink.Copy.PdbFiles" Version="2.8.3" PrivateAssets="All" />
   </ItemGroup>
 
   <PropertyGroup>
     <NestedBuild>$(TargetDir)\nestedBuild\</NestedBuild>
   </PropertyGroup>
+
   <ItemGroup>
     <BootStrapFiles Include="$(NestedBuild)hostpolicy.dll;$(NestedBuild)$(ProjectName).exe;$(NestedBuild)hostfxr.dll;" />
   </ItemGroup>
-  <Target Name="GenerateNetcoreExe"
-          AfterTargets="Build"
-          Condition="$(IsNestedBuild) != true">
+  <Target Name="GenerateNetcoreExe" AfterTargets="Build" Condition="$(IsNestedBuild) != true">
     <RemoveDir Directories="$(NestedBuild)" />
-    <Exec ConsoleToMSBuild="true"
-          Command="dotnet build $(ProjectPath) -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true --output $(NestedBuild)">
-      <Output TaskParameter="ConsoleOutput"
-              PropertyName="OutputOfExec" />
+    <Exec ConsoleToMSBuild="true" Command="dotnet build $(ProjectPath) -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true --output $(NestedBuild)">
+      <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
     </Exec>
-    <Copy SourceFiles="@(BootStrapFiles)"
-          DestinationFolder="$(OutputPath)" />
+    <Copy SourceFiles="@(BootStrapFiles)" DestinationFolder="$(OutputPath)" />
     <RemoveDir Directories="$(NestedBuild)" />
   </Target>
 
