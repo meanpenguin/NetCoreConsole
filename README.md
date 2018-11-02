@@ -45,7 +45,6 @@ It effectively executes the following command:
 The `IsNestedBuild` property is used to prevent infinite recursion.
 
 ```xml
-
   <PropertyGroup>
     <NestedBuild>$(TargetDir)\nestedBuild\</NestedBuild>
   </PropertyGroup>
@@ -94,7 +93,7 @@ NodaTime.dll
 
 This project uses embedded symbols, so no pdb is created. However if a pdb is required, or it is necessary to include pdbs from referenced packages, consider using the [SourceLink.Copy.PdbFiles NuGet package](https://www.nuget.org/packages/SourceLink.Copy.PdbFiles/):
 
-```
+```xml
 <PackageReference Include="SourceLink.Copy.PdbFiles" Version="2.8.3" PrivateAssets="All" />
 ```
 
