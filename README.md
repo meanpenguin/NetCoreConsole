@@ -23,9 +23,7 @@ The primary build will produce the following files:
 
 ```
 MyConsole.dll
-MyConsole.pdb
 NodaTime.dll
-NodaTime.pdb
 MyConsole.deps.json
 MyConsole.runtimeconfig.dev.json
 MyConsole.runtimeconfig.json
@@ -41,31 +39,39 @@ A secondary nested build is used to produce the missing bootstrap and hosting fi
 It effectively executes the following command:
 
 ```
- dotnet build MyConsole.csproj -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true
+ dotnet build MyConsole.csproj --configuration Release --runtime win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true
 ```
 
-The `IsNestedBuild` property is used to prevent infinite recursion. 
+The `IsNestedBuild` property is used to prevent infinite recursion.
 
 ```xml
-<PropertyGroup>
-  <NestedBuild>$(TargetDir)\nestedBuild\</NestedBuild>
-</PropertyGroup>
-<ItemGroup>
-  <BootStrapFiles Include="$(NestedBuild)hostpolicy.dll;$(NestedBuild)$(ProjectName).exe;$(NestedBuild)hostfxr.dll;" />
-</ItemGroup>
-<Target Name="GenerateNetcoreExe"
-        AfterTargets="Build"
-        Condition="$(IsNestedBuild) != true">
-  <RemoveDir Directories="$(NestedBuild)" />
-  <Exec ConsoleToMSBuild="true"
-        Command="dotnet build $(ProjectPath) -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true --output $(NestedBuild)">
-    <Output TaskParameter="ConsoleOutput"
-            PropertyName="OutputOfExec" />
-  </Exec>
-  <Copy SourceFiles="@(BootStrapFiles)"
-        DestinationFolder="$(OutputPath)" />
-  <RemoveDir Directories="$(NestedBuild)" />
-</Target>
+
+  <PropertyGroup>
+    <NestedBuild>$(TargetDir)\nestedBuild\</NestedBuild>
+  </PropertyGroup>
+  <ItemGroup>
+    <BootStrapFiles Include="
+                    $(NestedBuild)hostpolicy.dll;
+                    $(NestedBuild)$(ProjectName).exe;
+                    $(NestedBuild)hostfxr.dll" />
+  </ItemGroup>
+  <Target Name="GenerateNetcoreExe"
+          AfterTargets="Build"
+          Condition="$(IsNestedBuild) != true">
+    <RemoveDir Directories="$(NestedBuild)" />
+    <Exec ConsoleToMSBuild="true"
+          Command="dotnet build $(ProjectPath) ^
+          --configuration $(Configuration) ^
+          --runtime win-x64 ^
+          --output $(NestedBuild) ^
+          /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true">
+      <Output TaskParameter="ConsoleOutput"
+              PropertyName="OutputOfExec" />
+    </Exec>
+    <Copy SourceFiles="@(BootStrapFiles)"
+          DestinationFolder="$(OutputPath)" />
+    <RemoveDir Directories="$(NestedBuild)" />
+  </Target>
 ```
 
 
@@ -79,12 +85,20 @@ hostpolicy.dll
 MyConsole.deps.json
 MyConsole.dll
 MyConsole.exe
-MyConsole.pdb
 MyConsole.runtimeconfig.dev.json
 MyConsole.runtimeconfig.json
 NodaTime.dll
-NodaTime.pdb
 ```
+
+## Debug files
+
+This project uses embedded symbols, so no pdb is created. However if a pdb is required, or it is necessary to include pdbs from referenced packages, consider using the [SourceLink.Copy.PdbFiles NuGet package](https://www.nuget.org/packages/SourceLink.Copy.PdbFiles/):
+
+```
+<PackageReference Include="SourceLink.Copy.PdbFiles" Version="2.8.3" PrivateAssets="All" />
+```
+
+See [dotnet/sdk/issues/1458](https://github.com/dotnet/sdk/issues/1458) for more information.
 
 
 ## Full csproj
@@ -96,11 +110,14 @@ NodaTime.pdb
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Forced pdbs to be copied to the output directory. see https://github.com/dotnet/sdk/issues/1458 -->
-    <PackageReference Include="SourceLink.Copy.PdbFiles" Version="2.8.3" PrivateAssets="All" />
     <PackageReference Include="NodaTime" Version="2.4.0" />
   </ItemGroup>
 
@@ -108,14 +125,21 @@ NodaTime.pdb
     <NestedBuild>$(TargetDir)\nestedBuild\</NestedBuild>
   </PropertyGroup>
   <ItemGroup>
-    <BootStrapFiles Include="$(NestedBuild)hostpolicy.dll;$(NestedBuild)$(ProjectName).exe;$(NestedBuild)hostfxr.dll;" />
+    <BootStrapFiles Include="
+                    $(NestedBuild)hostpolicy.dll;
+                    $(NestedBuild)$(ProjectName).exe;
+                    $(NestedBuild)hostfxr.dll" />
   </ItemGroup>
   <Target Name="GenerateNetcoreExe"
           AfterTargets="Build"
           Condition="$(IsNestedBuild) != true">
     <RemoveDir Directories="$(NestedBuild)" />
     <Exec ConsoleToMSBuild="true"
-          Command="dotnet build $(ProjectPath) -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true --output $(NestedBuild)">
+          Command="dotnet build $(ProjectPath) ^
+          --configuration $(Configuration) ^
+          --runtime win-x64 ^
+          --output $(NestedBuild) ^
+          /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true">
       <Output TaskParameter="ConsoleOutput"
               PropertyName="OutputOfExec" />
     </Exec>

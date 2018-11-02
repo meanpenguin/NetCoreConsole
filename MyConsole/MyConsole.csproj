@@ -18,15 +18,22 @@
   <PropertyGroup>
     <NestedBuild>$(TargetDir)\nestedBuild\</NestedBuild>
   </PropertyGroup>
-
   <ItemGroup>
-    <BootStrapFiles Include="$(NestedBuild)hostpolicy.dll;$(NestedBuild)$(ProjectName).exe;$(NestedBuild)hostfxr.dll;" />
+    <BootStrapFiles Include="
+                    $(NestedBuild)hostpolicy.dll;
+                    $(NestedBuild)$(ProjectName).exe;
+                    $(NestedBuild)hostfxr.dll" />
   </ItemGroup>
   <Target Name="GenerateNetcoreExe"
           AfterTargets="Build"
           Condition="$(IsNestedBuild) != true">
     <RemoveDir Directories="$(NestedBuild)" />
-    <Exec ConsoleToMSBuild="true" Command="dotnet build $(ProjectPath) -r win-x64 /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true --output $(NestedBuild)">
+    <Exec ConsoleToMSBuild="true"
+          Command="dotnet build $(ProjectPath) ^
+          --configuration $(Configuration) ^
+          --runtime win-x64 ^
+          --output $(NestedBuild) ^
+          /p:CopyLocalLockFileAssemblies=false;IsNestedBuild=true">
       <Output TaskParameter="ConsoleOutput"
               PropertyName="OutputOfExec" />
     </Exec>
