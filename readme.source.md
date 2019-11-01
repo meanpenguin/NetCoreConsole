@@ -1,4 +1,4 @@
-This shows how to build a netcore3 console app, including all files needed to deploy to a system with netcore already installed.
+This shows how to use the various publish profile options when building a netcore 3 console app.
 
 This sample targets one dependency (NodaTime) for illustrative purposes
 
@@ -10,60 +10,85 @@ toc
 
 ### Default
 
+Uses the default publis profile settings:
+
 snippet: Default.pubxml
 
-~250 files
-~70MB
+ * ~ 250 files
+ * ~ 70MB
+
+Publish Command:
 
 ```
-dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=Default
+dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=Default
 ```
 
 
 ### Framework Dependent
 
-snippet: Fwd.pubxml
+Same as the Default but makes it [Framework-dependent](https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
-~5 files
-~600KB
+snippet: Fdd.pubxml
+
+ * ~ 5 files
+ * ~ 600KB
+ * Depends on an installed runtime.
+
+Publish Command:
 
 ```
-dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=Fwd
+dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=Fdd
 ```
 
 
-### Single Exe
+### Single-File Exe
+
+Same as default but creates a [Single-file executables](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables):
 
 snippet: SingleExe.pubxml
 
-~1 file
-~70MB
+ * 1 file
+ * ~ 70MB
+
+Publish Command:
 
 ```
-dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=SingleExe
+dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExe
 ```
 
 
 ### Single Exe and Framework Dependent
 
-snippet: SingleExeFwd.pubxml
+Combines Framework Dependent and Single-File Exe:
 
-~1 file
-~600KB
+snippet: SingleExeFdd.pubxml
+
+Result:
+
+ * 1 file
+ * ~ 600KB
+ * Depends on an installed runtime.
+
+Publish Command:
 
 ```
-dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=SingleExeFwd
+dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExeFdd
 ```
 
 
 ### Default Trimmed
 
+Same as the Default but uses [assembly-linking](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#assembly-linking):
+
 snippet: DefaultTrimmed.pubxml
 
-~225 files
-~55MB
+ * ~ 100 files
+ * ~ 33MB
+
+Publish Command:
 
 ```
-dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=DefaultTrimmed
+dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=DefaultTrimmed
 ```
 
+PublishTrimmed can also be applied to the other above profile examples.
