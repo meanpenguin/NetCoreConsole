@@ -9,15 +9,25 @@ This shows how to build a netcore3 console app, including all files needed to de
 
 This sample targets one dependency (NodaTime) for illustrative purposes
 
+<!-- toc -->
+## Contents
 
-## Moving pieces
+  * [Publish Profile](#publish-profile)
+    * [Default](#default)
+    * [Framework Dependent](#framework-dependent)
+    * [Single Exe](#single-exe)
+    * [Single Exe and Framework Dependent](#single-exe-and-framework-dependent)
+<!-- endtoc -->
 
 
-### Publish Profile
+
+## Publish Profile
 
 
-<!-- snippet: Win64.pubxml -->
-<a id='snippet-Win64.pubxml'/></a>
+### Default
+
+<!-- snippet: Default.pubxml -->
+<a id='snippet-Default.pubxml'/></a>
 ```pubxml
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -26,41 +36,105 @@ This sample targets one dependency (NodaTime) for illustrative purposes
     <Configuration>Release</Configuration>
     <Platform>Any CPU</Platform>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <PublishDir>bin\Release\publish\</PublishDir>
+    <PublishDir>bin\Release\publish\Default\</PublishDir>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+</Project>
+```
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Default.pubxml#L1-L11) / [anchor](#snippet-Default.pubxml)</sup>
+<!-- endsnippet -->
+
+~250 files
+~70MB
+
+```
+dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=Default
+```
+
+
+### Framework Dependent
+
+<!-- snippet: Fwd.pubxml -->
+<a id='snippet-Fwd.pubxml'/></a>
+```pubxml
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PublishProtocol>FileSystem</PublishProtocol>
+    <Configuration>Release</Configuration>
+    <Platform>Any CPU</Platform>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <PublishDir>bin\Release\publish\Fwd\</PublishDir>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+  </PropertyGroup>
+</Project>
+```
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Fwd.pubxml#L1-L12) / [anchor](#snippet-Fwd.pubxml)</sup>
+<!-- endsnippet -->
+
+~5 files
+~600KB
+
+```
+dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=Fwd
+```
+
+
+### Single Exe
+
+<!-- snippet: SingleExe.pubxml -->
+<a id='snippet-SingleExe.pubxml'/></a>
+```pubxml
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PublishProtocol>FileSystem</PublishProtocol>
+    <Configuration>Release</Configuration>
+    <Platform>Any CPU</Platform>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <PublishDir>bin\Release\publish\SingleExe\</PublishDir>
+    <PublishSingleFile>true</PublishSingleFile>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+</Project>
+```
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExe.pubxml#L1-L12) / [anchor](#snippet-SingleExe.pubxml)</sup>
+<!-- endsnippet -->
+
+~1 file
+~70MB
+
+```
+dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=SingleExe
+```
+
+
+### Single Exe and Framework Dependent
+
+<!-- snippet: SingleExeFwd.pubxml -->
+<a id='snippet-SingleExeFwd.pubxml'/></a>
+```pubxml
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PublishProtocol>FileSystem</PublishProtocol>
+    <Configuration>Release</Configuration>
+    <Platform>Any CPU</Platform>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <PublishDir>bin\Release\publish\SingleExeFwd\</PublishDir>
     <PublishSingleFile>true</PublishSingleFile>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>false</SelfContained>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Win64.pubxml#L1-L13) / [anchor](#snippet-Win64.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExeFwd.pubxml#L1-L13) / [anchor](#snippet-SingleExeFwd.pubxml)</sup>
 <!-- endsnippet -->
 
-dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=Win64
-
-
-## Final output
-
-The full resultant file list
+~1 file
+~600KB
 
 ```
-hostfxr.dll
-hostpolicy.dll
-MyConsole.deps.json
-MyConsole.dll
-MyConsole.exe
-MyConsole.runtimeconfig.dev.json
-MyConsole.runtimeconfig.json
-NodaTime.dll
+dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=SingleExeFwd
 ```
-
-## Debug files
-
-This project uses embedded symbols, so no pdb is created. However if a pdb is required, or it is necessary to include pdbs from referenced packages, consider using the [SourceLink.Copy.PdbFiles NuGet package](https://www.nuget.org/packages/SourceLink.Copy.PdbFiles/):
-
-```xml
-<PackageReference Include="SourceLink.Copy.PdbFiles" Version="2.8.3" PrivateAssets="All" />
-```
-
-See [dotnet/sdk/issues/1458](https://github.com/dotnet/sdk/issues/1458) for more information.
-

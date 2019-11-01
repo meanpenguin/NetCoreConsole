@@ -2,40 +2,55 @@ This shows how to build a netcore3 console app, including all files needed to de
 
 This sample targets one dependency (NodaTime) for illustrative purposes
 
-
-## Moving pieces
-
-
-### Publish Profile
+toc
 
 
-snippet: Win64.pubxml
-
-dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=Win64
+## Publish Profile
 
 
-## Final output
+### Default
 
-The full resultant file list
+snippet: Default.pubxml
+
+~250 files
+~70MB
 
 ```
-hostfxr.dll
-hostpolicy.dll
-MyConsole.deps.json
-MyConsole.dll
-MyConsole.exe
-MyConsole.runtimeconfig.dev.json
-MyConsole.runtimeconfig.json
-NodaTime.dll
+dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=Default
 ```
 
-## Debug files
 
-This project uses embedded symbols, so no pdb is created. However if a pdb is required, or it is necessary to include pdbs from referenced packages, consider using the [SourceLink.Copy.PdbFiles NuGet package](https://www.nuget.org/packages/SourceLink.Copy.PdbFiles/):
+### Framework Dependent
 
-```xml
-<PackageReference Include="SourceLink.Copy.PdbFiles" Version="2.8.3" PrivateAssets="All" />
+snippet: Fwd.pubxml
+
+~5 files
+~600KB
+
+```
+dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=Fwd
 ```
 
-See [dotnet/sdk/issues/1458](https://github.com/dotnet/sdk/issues/1458) for more information.
 
+### Single Exe
+
+snippet: SingleExe.pubxml
+
+~1 file
+~70MB
+
+```
+dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=SingleExe
+```
+
+
+### Single Exe and Framework Dependent
+
+snippet: SingleExeFwd.pubxml
+
+~1 file
+~600KB
+
+```
+dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=SingleExeFwd
+```
