@@ -15,7 +15,6 @@ This sample targets one dependency (NodaTime) for illustrative purposes
 
 ### Publish Profile
 
-https://go.microsoft.com/fwlink/?LinkID=208121
 
 <!-- snippet: Win64.pubxml -->
 <a id='snippet-Win64.pubxml'/></a>
@@ -29,13 +28,15 @@ https://go.microsoft.com/fwlink/?LinkID=208121
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <PublishDir>bin\Release\publish\</PublishDir>
     <PublishSingleFile>true</PublishSingleFile>
-    <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>false</SelfContained>
   </PropertyGroup>
 </Project>
 ```
 <sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Win64.pubxml#L1-L13) / [anchor](#snippet-Win64.pubxml)</sup>
 <!-- endsnippet -->
+
+dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=Win64
 
 
 ## Final output
