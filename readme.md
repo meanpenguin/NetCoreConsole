@@ -30,15 +30,13 @@ This sample targets one dependency (NodaTime) for illustrative purposes
 <!-- snippet: Default.pubxml -->
 <a id='snippet-Default.pubxml'/></a>
 ```pubxml
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
   <PropertyGroup>
     <PublishDir>bin\Release\publish\Default\</PublishDir>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Default.pubxml#L1-L7) / [anchor](#snippet-Default.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Default.pubxml#L1-L5) / [anchor](#snippet-Default.pubxml)</sup>
 <!-- endsnippet -->
 
 ~250 files
@@ -54,16 +52,14 @@ dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=Default
 <!-- snippet: Fwd.pubxml -->
 <a id='snippet-Fwd.pubxml'/></a>
 ```pubxml
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
   <PropertyGroup>
     <PublishDir>bin\Release\publish\Fwd\</PublishDir>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>false</SelfContained>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Fwd.pubxml#L1-L8) / [anchor](#snippet-Fwd.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Fwd.pubxml#L1-L6) / [anchor](#snippet-Fwd.pubxml)</sup>
 <!-- endsnippet -->
 
 ~5 files
@@ -79,16 +75,14 @@ dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=Fwd
 <!-- snippet: SingleExe.pubxml -->
 <a id='snippet-SingleExe.pubxml'/></a>
 ```pubxml
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
   <PropertyGroup>
     <PublishDir>bin\Release\publish\SingleExe\</PublishDir>
     <PublishSingleFile>true</PublishSingleFile>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExe.pubxml#L1-L8) / [anchor](#snippet-SingleExe.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExe.pubxml#L1-L6) / [anchor](#snippet-SingleExe.pubxml)</sup>
 <!-- endsnippet -->
 
 ~1 file
@@ -104,17 +98,15 @@ dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=SingleExe
 <!-- snippet: SingleExeFwd.pubxml -->
 <a id='snippet-SingleExeFwd.pubxml'/></a>
 ```pubxml
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
   <PropertyGroup>
     <PublishDir>bin\Release\publish\SingleExeFwd\</PublishDir>
     <PublishSingleFile>true</PublishSingleFile>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>false</SelfContained>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExeFwd.pubxml#L1-L9) / [anchor](#snippet-SingleExeFwd.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExeFwd.pubxml#L1-L7) / [anchor](#snippet-SingleExeFwd.pubxml)</sup>
 <!-- endsnippet -->
 
 ~1 file
@@ -130,16 +122,14 @@ dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=SingleExeFwd
 <!-- snippet: DefaultTrimmed.pubxml -->
 <a id='snippet-DefaultTrimmed.pubxml'/></a>
 ```pubxml
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
   <PropertyGroup>
     <PublishDir>bin\Release\publish\DefaultTrimmed\</PublishDir>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/DefaultTrimmed.pubxml#L1-L8) / [anchor](#snippet-DefaultTrimmed.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/DefaultTrimmed.pubxml#L1-L6) / [anchor](#snippet-DefaultTrimmed.pubxml)</sup>
 <!-- endsnippet -->
 
 ~225 files
