@@ -7,10 +7,12 @@ toc
 
 ## Publish Profile
 
+Publish profiles are located in [src/MyConsole/Properties/PublishProfiles](/src/MyConsole/Properties/PublishProfiles)
+
 
 ### Default
 
-Uses the default publis profile settings:
+Uses the default publish profile settings:
 
 snippet: Default.pubxml
 
