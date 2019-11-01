@@ -54,3 +54,16 @@ snippet: SingleExeFwd.pubxml
 ```
 dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=SingleExeFwd
 ```
+
+
+### Default Trimmed
+
+snippet: DefaultTrimmed.pubxml
+
+~225 files
+~55MB
+
+```
+dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=DefaultTrimmed
+```
+

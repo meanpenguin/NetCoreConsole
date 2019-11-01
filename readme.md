@@ -17,6 +17,7 @@ This sample targets one dependency (NodaTime) for illustrative purposes
     * [Framework Dependent](#framework-dependent)
     * [Single Exe](#single-exe)
     * [Single Exe and Framework Dependent](#single-exe-and-framework-dependent)
+    * [Default Trimmed](#default-trimmed)
 <!-- endtoc -->
 
 
@@ -32,16 +33,12 @@ This sample targets one dependency (NodaTime) for illustrative purposes
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishProtocol>FileSystem</PublishProtocol>
-    <Configuration>Release</Configuration>
-    <Platform>Any CPU</Platform>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
     <PublishDir>bin\Release\publish\Default\</PublishDir>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Default.pubxml#L1-L11) / [anchor](#snippet-Default.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Default.pubxml#L1-L7) / [anchor](#snippet-Default.pubxml)</sup>
 <!-- endsnippet -->
 
 ~250 files
@@ -60,17 +57,13 @@ dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=Default
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishProtocol>FileSystem</PublishProtocol>
-    <Configuration>Release</Configuration>
-    <Platform>Any CPU</Platform>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
     <PublishDir>bin\Release\publish\Fwd\</PublishDir>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>false</SelfContained>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Fwd.pubxml#L1-L12) / [anchor](#snippet-Fwd.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Fwd.pubxml#L1-L8) / [anchor](#snippet-Fwd.pubxml)</sup>
 <!-- endsnippet -->
 
 ~5 files
@@ -89,17 +82,13 @@ dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=Fwd
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishProtocol>FileSystem</PublishProtocol>
-    <Configuration>Release</Configuration>
-    <Platform>Any CPU</Platform>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
     <PublishDir>bin\Release\publish\SingleExe\</PublishDir>
     <PublishSingleFile>true</PublishSingleFile>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExe.pubxml#L1-L12) / [anchor](#snippet-SingleExe.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExe.pubxml#L1-L8) / [anchor](#snippet-SingleExe.pubxml)</sup>
 <!-- endsnippet -->
 
 ~1 file
@@ -118,10 +107,6 @@ dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=SingleExe
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishProtocol>FileSystem</PublishProtocol>
-    <Configuration>Release</Configuration>
-    <Platform>Any CPU</Platform>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
     <PublishDir>bin\Release\publish\SingleExeFwd\</PublishDir>
     <PublishSingleFile>true</PublishSingleFile>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
@@ -129,7 +114,7 @@ dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=SingleExe
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExeFwd.pubxml#L1-L13) / [anchor](#snippet-SingleExeFwd.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExeFwd.pubxml#L1-L9) / [anchor](#snippet-SingleExeFwd.pubxml)</sup>
 <!-- endsnippet -->
 
 ~1 file
@@ -138,3 +123,29 @@ dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=SingleExe
 ```
 dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=SingleExeFwd
 ```
+
+
+### Default Trimmed
+
+<!-- snippet: DefaultTrimmed.pubxml -->
+<a id='snippet-DefaultTrimmed.pubxml'/></a>
+```pubxml
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PublishDir>bin\Release\publish\DefaultTrimmed\</PublishDir>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishTrimmed>true</PublishTrimmed>
+  </PropertyGroup>
+</Project>
+```
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/DefaultTrimmed.pubxml#L1-L8) / [anchor](#snippet-DefaultTrimmed.pubxml)</sup>
+<!-- endsnippet -->
+
+~225 files
+~55MB
+
+```
+dotnet publish MyConsole\MyConsole.csproj  /p:PublishProfile=DefaultTrimmed
+```
+
