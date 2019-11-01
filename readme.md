@@ -70,7 +70,7 @@ Same as the Default but makes it [Framework-dependent](https://docs.microsoft.co
 <sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Fdd.pubxml#L1-L6) / [anchor](#snippet-Fdd.pubxml)</sup>
 <!-- endsnippet -->
 
- * ~ 5 files
+ * 5 files
  * ~ 600KB
  * Depends on an installed runtime.
 

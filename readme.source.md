@@ -32,7 +32,7 @@ Same as the Default but makes it [Framework-dependent](https://docs.microsoft.co
 
 snippet: Fdd.pubxml
 
- * ~ 5 files
+ * 5 files
  * ~ 600KB
  * Depends on an installed runtime.
 
