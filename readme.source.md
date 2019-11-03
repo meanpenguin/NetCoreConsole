@@ -6,11 +6,11 @@ toc
 
 ## Console project settings
 
-snippet: MyConsole.csproj
-
  * This sample targets one dependency (NodaTime) for illustrative purposes.
  * The [Runtime IDentifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) is hard coded to `win-x64`. All profiles will inherit this setting.
  * `AppendRuntimeIdentifierToOutputPath` and `AppendTargetFrameworkToOutputPath` are disabled to simplify the resulting directory structure. See [Change the build output directory](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-change-the-build-output-directory)
+
+snippet: MyConsole.csproj
 
 
 ## Publish Profile
