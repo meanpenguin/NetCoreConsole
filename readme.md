@@ -7,11 +7,11 @@ To change this file edit the source file and then run MarkdownSnippets.
 
 This shows how to use the various publish profile options when building a netcore 3 console app.
 
-This sample targets one dependency (NodaTime) for illustrative purposes
 
 <!-- toc -->
 ## Contents
 
+  * [Console project settings](#console-project-settings)
   * [Publish Profile](#publish-profile)
     * [Default](#default)
     * [Framework Dependent](#framework-dependent)
@@ -20,6 +20,36 @@ This sample targets one dependency (NodaTime) for illustrative purposes
     * [Default Trimmed](#default-trimmed)
 <!-- endtoc -->
 
+
+
+## Console project settings
+
+<!-- snippet: MyConsole.csproj -->
+<a id='snippet-MyConsole.csproj'/></a>
+```csproj
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NodaTime" Version="2.4.0" />
+  </ItemGroup>
+
+</Project>
+```
+<sup>[snippet source](/src/MyConsole/MyConsole.csproj#L1-L16) / [anchor](#snippet-MyConsole.csproj)</sup>
+<!-- endsnippet -->
+
+ * This sample targets one dependency (NodaTime) for illustrative purposes.
+ * The [Runtime IDentifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) is hard coded to `win-x64`. All profiles will inherit this setting.
+ * `AppendRuntimeIdentifierToOutputPath` and `AppendTargetFrameworkToOutputPath` are disabled to simplify the resulting directory structure. See [Change the build output directory](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-change-the-build-output-directory)
 
 
 ## Publish Profile
