@@ -24,8 +24,7 @@ Uses the default publish profile settings:
 
 snippet: Default.pubxml
 
- * ~ 250 files
- * ~ 70MB
+include: Default
 
 Publish Command:
 
@@ -40,8 +39,10 @@ Same as the Default but makes it [Framework-dependent](https://docs.microsoft.co
 
 snippet: Fdd.pubxml
 
- * 5 files
- * ~ 600KB
+include: Fdd
+
+Notes:
+
  * Depends on an installed runtime.
 
 Publish Command:
@@ -57,8 +58,7 @@ Same as default but creates a [Single-file executables](https://docs.microsoft.c
 
 snippet: SingleExe.pubxml
 
- * 1 file
- * ~ 70MB
+include: SingleExe
 
 Publish Command:
 
@@ -73,10 +73,10 @@ Combines Framework Dependent and Single-File Exe:
 
 snippet: SingleExeFdd.pubxml
 
-Result:
+include: SingleExeFdd
 
- * 1 file
- * ~ 600KB
+Notes:
+
  * Depends on an installed runtime.
 
 Publish Command:
@@ -92,8 +92,7 @@ Same as the Default but uses [assembly-linking](https://docs.microsoft.com/en-us
 
 snippet: DefaultTrimmed.pubxml
 
- * ~ 100 files
- * ~ 33MB
+include: DefaultTrimmed
 
 Publish Command:
 

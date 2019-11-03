@@ -32,7 +32,6 @@ This shows how to use the various publish profile options when building a netcor
 <a id='snippet-MyConsole.csproj'/></a>
 ```csproj
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -41,14 +40,12 @@ This shows how to use the various publish profile options when building a netcor
     <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="NodaTime" Version="2.4.0" />
   </ItemGroup>
-
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/MyConsole.csproj#L1-L16) / [anchor](#snippet-MyConsole.csproj)</sup>
+<sup>[snippet source](/src/MyConsole/MyConsole.csproj#L1-L13) / [anchor](#snippet-MyConsole.csproj)</sup>
 <!-- endsnippet -->
 
 
@@ -73,8 +70,13 @@ Uses the default publish profile settings:
 <sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Default.pubxml#L1-L5) / [anchor](#snippet-Default.pubxml)</sup>
 <!-- endsnippet -->
 
- * ~ 250 files
- * ~ 70MB
+<!--
+include: Default
+path: C:\Code\NetCoreConsole\src\includes\Default.include.md
+-->
+
+ * Files: 225
+ * Size: 66.25 MB
 
 Publish Command:
 
@@ -100,8 +102,16 @@ Same as the Default but makes it [Framework-dependent](https://docs.microsoft.co
 <sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Fdd.pubxml#L1-L6) / [anchor](#snippet-Fdd.pubxml)</sup>
 <!-- endsnippet -->
 
- * 5 files
- * ~ 600KB
+<!--
+include: Fdd
+path: C:\Code\NetCoreConsole\src\includes\Fdd.include.md
+-->
+
+ * Files: 5
+ * Size: 614.67 KB
+
+Notes:
+
  * Depends on an installed runtime.
 
 Publish Command:
@@ -128,8 +138,13 @@ Same as default but creates a [Single-file executables](https://docs.microsoft.c
 <sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExe.pubxml#L1-L6) / [anchor](#snippet-SingleExe.pubxml)</sup>
 <!-- endsnippet -->
 
- * 1 file
- * ~ 70MB
+<!--
+include: SingleExe
+path: C:\Code\NetCoreConsole\src\includes\SingleExe.include.md
+-->
+
+ * Files: 1
+ * Size: 66.26 MB
 
 Publish Command:
 
@@ -156,10 +171,16 @@ Combines Framework Dependent and Single-File Exe:
 <sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExeFdd.pubxml#L1-L7) / [anchor](#snippet-SingleExeFdd.pubxml)</sup>
 <!-- endsnippet -->
 
-Result:
+<!--
+include: SingleExeFdd
+path: C:\Code\NetCoreConsole\src\includes\SingleExeFdd.include.md
+-->
 
- * 1 file
- * ~ 600KB
+ * Files: 1
+ * Size: 614.84 KB
+
+Notes:
+
  * Depends on an installed runtime.
 
 Publish Command:
@@ -186,8 +207,13 @@ Same as the Default but uses [assembly-linking](https://docs.microsoft.com/en-us
 <sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/DefaultTrimmed.pubxml#L1-L6) / [anchor](#snippet-DefaultTrimmed.pubxml)</sup>
 <!-- endsnippet -->
 
- * ~ 100 files
- * ~ 33MB
+<!--
+include: DefaultTrimmed
+path: C:\Code\NetCoreConsole\src\includes\DefaultTrimmed.include.md
+-->
+
+ * Files: 103
+ * Size: 33.06 MB
 
 Publish Command:
 
