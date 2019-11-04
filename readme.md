@@ -27,7 +27,7 @@ This shows how to use the various publish profile options when building a netcor
 ## Console project settings
 
  * This sample references and makes use of NodaTime to illustrate a dependency being consumed.
- * This sample references, but does not use, Newtonsoft for illustrate a dependency being trimmed.
+ * This sample references, but does not use, Newtonsoft to illustrate a dependency being trimmed.
  * The [Runtime IDentifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) is hard coded to `win-x64`. All profiles will inherit this setting.
  * `AppendRuntimeIdentifierToOutputPath` and `AppendTargetFrameworkToOutputPath` are disabled to simplify the resulting directory structure. See [Change the build output directory](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-change-the-build-output-directory).
  * `PublishDir` is set to `src\MyConsole\publish`.
@@ -66,7 +66,7 @@ Publish profiles are located in [src/MyConsole/Properties/PublishProfiles](/src/
 
 ### Default
 
-Uses the default publish profile settings:
+Uses an empty (default) publish profile:
 
 <!-- snippet: Default.pubxml -->
 <a id='snippet-Default.pubxml'/></a>
