@@ -28,7 +28,7 @@ This shows how to use the various publish options when building a netcore 3 cons
 
  * This sample references and makes use of NodaTime to illustrate a dependency being consumed.
  * This sample references, but does not use, Newtonsoft to illustrate a dependency being trimmed.
- * The [Runtime IDentifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) is hard coded to `win-x64`. All profiles will inherit this setting.
+ * The [Runtime IDentifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) is hard coded to `win10-x64`. All profiles will inherit this setting.
  * `PublishDir` is set to `src\MyConsole\publish\$(PublishProfile)\`.
 
 <!-- snippet: MyConsole.csproj -->
@@ -38,7 +38,7 @@ This shows how to use the various publish options when building a netcore 3 cons
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
     <PublishDir>publish\$(PublishProfile)\</PublishDir>
   </PropertyGroup>
   <ItemGroup>
