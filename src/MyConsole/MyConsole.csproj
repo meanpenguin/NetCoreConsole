@@ -6,6 +6,7 @@
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishDir>publish\$(PublishProfile)\</PublishDir>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="ContentFile.txt">

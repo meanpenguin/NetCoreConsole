@@ -17,7 +17,7 @@ public class Tests :
     public void Test()
     {
         var project = Path.GetFullPath(Path.Combine(SourceDirectory, @"..\MyConsole\MyConsole.csproj"));
-        var publishDir = Path.GetFullPath(Path.Combine(SourceDirectory, @"..\MyConsole\bin\Release\publish"));
+        var publishDir = Path.GetFullPath(Path.Combine(SourceDirectory, @"..\MyConsole\publish"));
         IoHelpers.PurgeDirectory(publishDir);
         var includesDir = Path.GetFullPath(Path.Combine(SourceDirectory, @"..\includes"));
         Directory.CreateDirectory(includesDir);

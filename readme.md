@@ -29,7 +29,8 @@ This shows how to use the various publish profile options when building a netcor
  * This sample references and makes use of NodaTime to illustrate a dependency being consumed.
  * This sample references, but does not use, Newtonsoft for illustrate a dependency being trimmed.
  * The [Runtime IDentifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) is hard coded to `win-x64`. All profiles will inherit this setting.
- * `AppendRuntimeIdentifierToOutputPath` and `AppendTargetFrameworkToOutputPath` are disabled to simplify the resulting directory structure. See [Change the build output directory](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-change-the-build-output-directory)
+ * `AppendRuntimeIdentifierToOutputPath` and `AppendTargetFrameworkToOutputPath` are disabled to simplify the resulting directory structure. See [Change the build output directory](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-change-the-build-output-directory).
+ * `PublishDir` is set to `src\MyConsole\publish`.
 
 <!-- snippet: MyConsole.csproj -->
 <a id='snippet-MyConsole.csproj'/></a>
@@ -42,6 +43,7 @@ This shows how to use the various publish profile options when building a netcor
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishDir>publish\$(PublishProfile)\</PublishDir>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="ContentFile.txt">
@@ -53,7 +55,7 @@ This shows how to use the various publish profile options when building a netcor
   </ItemGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/MyConsole.csproj#L1-L18) / [anchor](#snippet-MyConsole.csproj)</sup>
+<sup>[snippet source](/src/MyConsole/MyConsole.csproj#L1-L19) / [anchor](#snippet-MyConsole.csproj)</sup>
 <!-- endsnippet -->
 
 
@@ -71,11 +73,10 @@ Uses the default publish profile settings:
 ```pubxml
 <Project>
   <PropertyGroup>
-    <PublishDir>bin\Release\publish\Default\</PublishDir>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Default.pubxml#L1-L5) / [anchor](#snippet-Default.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Default.pubxml#L1-L4) / [anchor](#snippet-Default.pubxml)</sup>
 <!-- endsnippet -->
 
 <!--
@@ -104,12 +105,11 @@ Same as the [Default](#default) but makes it [Framework-dependent](https://docs.
 ```pubxml
 <Project>
   <PropertyGroup>
-    <PublishDir>bin\Release\publish\Fdd\</PublishDir>
     <SelfContained>false</SelfContained>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Fdd.pubxml#L1-L6) / [anchor](#snippet-Fdd.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Fdd.pubxml#L1-L5) / [anchor](#snippet-Fdd.pubxml)</sup>
 <!-- endsnippet -->
 
 <!--
@@ -142,12 +142,11 @@ Same as [Default](#default) but creates a [Single-file executables](https://docs
 ```pubxml
 <Project>
   <PropertyGroup>
-    <PublishDir>bin\Release\publish\SingleFile\</PublishDir>
     <PublishSingleFile>true</PublishSingleFile>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleFile.pubxml#L1-L6) / [anchor](#snippet-SingleFile.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleFile.pubxml#L1-L5) / [anchor](#snippet-SingleFile.pubxml)</sup>
 <!-- endsnippet -->
 
 <!--
@@ -176,13 +175,12 @@ Combines [Single-File](#single-file) and [Framework Dependent](#framework-depend
 ```pubxml
 <Project>
   <PropertyGroup>
-    <PublishDir>bin\Release\publish\SingleFileFdd\</PublishDir>
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>false</SelfContained>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleFileFdd.pubxml#L1-L7) / [anchor](#snippet-SingleFileFdd.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleFileFdd.pubxml#L1-L6) / [anchor](#snippet-SingleFileFdd.pubxml)</sup>
 <!-- endsnippet -->
 
 <!--
@@ -215,12 +213,11 @@ Same as the [Default](#default) but uses [assembly-linking](https://docs.microso
 ```pubxml
 <Project>
   <PropertyGroup>
-    <PublishDir>bin\Release\publish\Trimmed\</PublishDir>
     <PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Trimmed.pubxml#L1-L6) / [anchor](#snippet-Trimmed.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Trimmed.pubxml#L1-L5) / [anchor](#snippet-Trimmed.pubxml)</sup>
 <!-- endsnippet -->
 
 <!--
@@ -247,13 +244,12 @@ Combines [Single File](#single-file) and [Trimmed](#trimmed):
 ```pubxml
 <Project>
   <PropertyGroup>
-    <PublishDir>bin\Release\publish\SingleFileTrimmed\</PublishDir>
     <PublishSingleFile>true</PublishSingleFile>
     <PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleFileTrimmed.pubxml#L1-L7) / [anchor](#snippet-SingleFileTrimmed.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleFileTrimmed.pubxml#L1-L6) / [anchor](#snippet-SingleFileTrimmed.pubxml)</sup>
 <!-- endsnippet -->
 
 <!--
