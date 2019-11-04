@@ -5,7 +5,7 @@ Source File: /readme.source.md
 To change this file edit the source file and then run MarkdownSnippets.
 -->
 
-This shows how to use the various publish profile options when building a netcore 3 console app.
+This shows how to use the various publish options when building a netcore 3 console app.
 
 <!-- toc -->
 ## Contents
@@ -57,7 +57,7 @@ This shows how to use the various publish profile options when building a netcor
 
 ## Publish Profiles
 
-Publish profiles are located in [src/MyConsole/Properties/PublishProfiles](/src/MyConsole/Properties/PublishProfiles)
+Publish options are stored in [Publish Profiles](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/visual-studio-publish-profiles?view=aspnetcore-3.0) and are located in [src/MyConsole/Properties/PublishProfiles](/src/MyConsole/Properties/PublishProfiles)
 
 
 ### Default
