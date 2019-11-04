@@ -35,7 +35,9 @@ dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=Default
 
 ### Framework Dependent
 
-Same as the [Default](#default) but makes it [Framework-dependent](https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd):
+Same as the [Default](#default) but makes it [Framework-dependent](https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd).
+
+> For an FDD, you deploy only your app and third-party dependencies. Your app will use the version of .NET Core that's present on the target system. 
 
 snippet: Fdd.pubxml
 
@@ -54,11 +56,15 @@ dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=Fdd
 
 ### Single-File Exe
 
-Same as [Default](#default) but creates a [Single-file executables](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables):
+Same as [Default](#default) but creates a [Single-file executables](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables).
+
+> The executable is self-extracting and contains all dependencies (including native) that are required to run your app. When the app is first run, the application is extracted to a directory based on the app name and build identifier. Startup is faster when the application is run again. The application doesn't need to extract itself a second time unless a new version was used.
 
 snippet: SingleExe.pubxml
 
 include: SingleExe
+
+Notes:
 
 Publish Command:
 
@@ -88,7 +94,9 @@ dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExe
 
 ### Trimmed
 
-Same as the [Default](#default) but uses [assembly-linking](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#assembly-linking):
+Same as the [Default](#default) but uses [assembly-linking](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#assembly-linking).
+
+> The .NET core 3.0 SDK comes with a tool that can reduce the size of apps by analyzing IL and trimming unused assemblies. Self-contained apps include everything needed to run your code, without requiring .NET to be installed on the host computer. However, many times the app only requires a small subset of the framework to function, and other unused libraries could be removed.
 
 snippet: Trimmed.pubxml
 
