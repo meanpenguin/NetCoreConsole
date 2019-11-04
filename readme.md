@@ -29,7 +29,6 @@ This shows how to use the various publish profile options when building a netcor
  * This sample references and makes use of NodaTime to illustrate a dependency being consumed.
  * This sample references, but does not use, Newtonsoft to illustrate a dependency being trimmed.
  * The [Runtime IDentifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) is hard coded to `win-x64`. All profiles will inherit this setting.
- * `AppendRuntimeIdentifierToOutputPath` and `AppendTargetFrameworkToOutputPath` are disabled to simplify the resulting directory structure. See [Change the build output directory](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-change-the-build-output-directory).
  * `PublishDir` is set to `src\MyConsole\publish\$(PublishProfile)\`.
 
 <!-- snippet: MyConsole.csproj -->
@@ -39,9 +38,6 @@ This shows how to use the various publish profile options when building a netcor
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PublishDir>publish\$(PublishProfile)\</PublishDir>
   </PropertyGroup>
@@ -55,7 +51,7 @@ This shows how to use the various publish profile options when building a netcor
   </ItemGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/MyConsole.csproj#L1-L19) / [anchor](#snippet-MyConsole.csproj)</sup>
+<sup>[snippet source](/src/MyConsole/MyConsole.csproj#L1-L16) / [anchor](#snippet-MyConsole.csproj)</sup>
 <!-- endsnippet -->
 
 
