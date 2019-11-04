@@ -9,7 +9,7 @@ toc
  * This sample references, but does not use, Newtonsoft to illustrate a dependency being trimmed.
  * The [Runtime IDentifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) is hard coded to `win-x64`. All profiles will inherit this setting.
  * `AppendRuntimeIdentifierToOutputPath` and `AppendTargetFrameworkToOutputPath` are disabled to simplify the resulting directory structure. See [Change the build output directory](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-change-the-build-output-directory).
- * `PublishDir` is set to `src\MyConsole\publish`.
+ * `PublishDir` is set to `src\MyConsole\publish\$(PublishProfile)\`.
 
 snippet: MyConsole.csproj
 
