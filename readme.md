@@ -49,12 +49,11 @@ This shows how to use the various publish profile options when building a netcor
     </Content>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="NodaTime" Version="2.4.7" />
-    <PackageReference Include="MarkdownSnippets" Version="17.0.0-beta.2"/>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
   </ItemGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/MyConsole.csproj#L1-L19) / [anchor](#snippet-MyConsole.csproj)</sup>
+<sup>[snippet source](/src/MyConsole/MyConsole.csproj#L1-L18) / [anchor](#snippet-MyConsole.csproj)</sup>
 <!-- endsnippet -->
 
 
