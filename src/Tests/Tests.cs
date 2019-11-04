@@ -26,9 +26,9 @@ public class Tests :
             {"Default", "Default"},
             {"Trimmed", "Trimmed"},
             {"Fdd", "Framework Dependent"},
-            {"SingleExe", "Single Exe"},
-            {"SingleExeFdd", "Single Exe and Framework Dependent"},
-            {"SingleExeTrimmed", "Single Exe, Framework Dependent, and Trimmed"}
+            {"SingleFile", "Single File"},
+            {"SingleFileFdd", "Single File and Framework Dependent"},
+            {"SingleFileTrimmed", "Single File, Framework Dependent, and Trimmed"}
         };
         foreach (var profile in dictionary)
         {

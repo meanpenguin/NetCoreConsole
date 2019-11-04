@@ -54,32 +54,32 @@ dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=Fdd
 ```
 
 
-### Single-File Exe
+### Single File
 
 Same as [Default](#default) but creates a [Single-file executables](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables).
 
 > The executable is self-extracting and contains all dependencies (including native) that are required to run your app. When the app is first run, the application is extracted to a directory based on the app name and build identifier. Startup is faster when the application is run again. The application doesn't need to extract itself a second time unless a new version was used.
 
-snippet: SingleExe.pubxml
+snippet: SingleFile.pubxml
 
-include: SingleExe
+include: SingleFile
 
 Notes:
 
 Publish Command:
 
 ```
-dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExe
+dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleFile
 ```
 
 
-### Single Exe and Framework Dependent
+### Single File and Framework Dependent
 
-Combines [Single-File Exe](#single-file-exe) and [Framework Dependent](#framework-dependent):
+Combines [Single-File](#single-file) and [Framework Dependent](#framework-dependent).
 
-snippet: SingleExeFdd.pubxml
+snippet: SingleFileFdd.pubxml
 
-include: SingleExeFdd
+include: SingleFileFdd
 
 Notes:
 
@@ -88,7 +88,7 @@ Notes:
 Publish Command:
 
 ```
-dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExeFdd
+dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleFileFdd
 ```
 
 
@@ -109,18 +109,18 @@ dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=Trimmed
 ```
 
 
-### Single Exe and Trimmed
+### Single File and Trimmed
 
-Combines [Single-File Exe](#single-file-exe) and [Trimmed](#trimmed):
+Combines [Single File](#single-file) and [Trimmed](#trimmed):
 
-snippet: SingleExeTrimmed.pubxml
+snippet: SingleFileTrimmed.pubxml
 
-include: SingleExeTrimmed
+include: SingleFileTrimmed
 
 Publish Command:
 
 ```
-dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExeTrimmed
+dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleFileTrimmed
 ```
 
 

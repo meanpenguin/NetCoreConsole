@@ -14,10 +14,10 @@ This shows how to use the various publish profile options when building a netcor
   * [Publish Profiles](#publish-profiles)
     * [Default](#default)
     * [Framework Dependent](#framework-dependent)
-    * [Single-File Exe](#single-file-exe)
-    * [Single Exe and Framework Dependent](#single-exe-and-framework-dependent)
+    * [Single File](#single-file)
+    * [Single File and Framework Dependent](#single-file-and-framework-dependent)
     * [Trimmed](#trimmed)
-    * [Single Exe and Trimmed](#single-exe-and-trimmed)
+    * [Single File and Trimmed](#single-file-and-trimmed)
   * [ReadyToRun images](#readytorun-images)
   * [Further Reading](#further-reading)
 <!-- endtoc -->
@@ -131,28 +131,28 @@ dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=Fdd
 ```
 
 
-### Single-File Exe
+### Single File
 
 Same as [Default](#default) but creates a [Single-file executables](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables).
 
 > The executable is self-extracting and contains all dependencies (including native) that are required to run your app. When the app is first run, the application is extracted to a directory based on the app name and build identifier. Startup is faster when the application is run again. The application doesn't need to extract itself a second time unless a new version was used.
 
-<!-- snippet: SingleExe.pubxml -->
-<a id='snippet-SingleExe.pubxml'/></a>
+<!-- snippet: SingleFile.pubxml -->
+<a id='snippet-SingleFile.pubxml'/></a>
 ```pubxml
 <Project>
   <PropertyGroup>
-    <PublishDir>bin\Release\publish\SingleExe\</PublishDir>
+    <PublishDir>bin\Release\publish\SingleFile\</PublishDir>
     <PublishSingleFile>true</PublishSingleFile>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExe.pubxml#L1-L6) / [anchor](#snippet-SingleExe.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleFile.pubxml#L1-L6) / [anchor](#snippet-SingleFile.pubxml)</sup>
 <!-- endsnippet -->
 
 <!--
-include: SingleExe
-path: C:\Code\NetCoreConsole\src\includes\SingleExe.include.md
+include: SingleFile
+path: C:\Code\NetCoreConsole\src\includes\SingleFile.include.md
 -->
 
  * Files: 1
@@ -163,31 +163,31 @@ Notes:
 Publish Command:
 
 ```
-dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExe
+dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleFile
 ```
 
 
-### Single Exe and Framework Dependent
+### Single File and Framework Dependent
 
-Combines [Single-File Exe](#single-file-exe) and [Framework Dependent](#framework-dependent):
+Combines [Single-File](#single-file) and [Framework Dependent](#framework-dependent).
 
-<!-- snippet: SingleExeFdd.pubxml -->
-<a id='snippet-SingleExeFdd.pubxml'/></a>
+<!-- snippet: SingleFileFdd.pubxml -->
+<a id='snippet-SingleFileFdd.pubxml'/></a>
 ```pubxml
 <Project>
   <PropertyGroup>
-    <PublishDir>bin\Release\publish\SingleExeFdd\</PublishDir>
+    <PublishDir>bin\Release\publish\SingleFileFdd\</PublishDir>
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>false</SelfContained>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExeFdd.pubxml#L1-L7) / [anchor](#snippet-SingleExeFdd.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleFileFdd.pubxml#L1-L7) / [anchor](#snippet-SingleFileFdd.pubxml)</sup>
 <!-- endsnippet -->
 
 <!--
-include: SingleExeFdd
-path: C:\Code\NetCoreConsole\src\includes\SingleExeFdd.include.md
+include: SingleFileFdd
+path: C:\Code\NetCoreConsole\src\includes\SingleFileFdd.include.md
 -->
 
  * Files: 1
@@ -200,7 +200,7 @@ Notes:
 Publish Command:
 
 ```
-dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExeFdd
+dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleFileFdd
 ```
 
 
@@ -238,27 +238,27 @@ dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=Trimmed
 ```
 
 
-### Single Exe and Trimmed
+### Single File and Trimmed
 
-Combines [Single-File Exe](#single-file-exe) and [Trimmed](#trimmed):
+Combines [Single File](#single-file) and [Trimmed](#trimmed):
 
-<!-- snippet: SingleExeTrimmed.pubxml -->
-<a id='snippet-SingleExeTrimmed.pubxml'/></a>
+<!-- snippet: SingleFileTrimmed.pubxml -->
+<a id='snippet-SingleFileTrimmed.pubxml'/></a>
 ```pubxml
 <Project>
   <PropertyGroup>
-    <PublishDir>bin\Release\publish\SingleExeTrimmed\</PublishDir>
+    <PublishDir>bin\Release\publish\SingleFileTrimmed\</PublishDir>
     <PublishSingleFile>true</PublishSingleFile>
     <PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExeTrimmed.pubxml#L1-L7) / [anchor](#snippet-SingleExeTrimmed.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleFileTrimmed.pubxml#L1-L7) / [anchor](#snippet-SingleFileTrimmed.pubxml)</sup>
 <!-- endsnippet -->
 
 <!--
-include: SingleExeTrimmed
-path: C:\Code\NetCoreConsole\src\includes\SingleExeTrimmed.include.md
+include: SingleFileTrimmed
+path: C:\Code\NetCoreConsole\src\includes\SingleFileTrimmed.include.md
 -->
 
  * Files: 1
@@ -267,7 +267,7 @@ path: C:\Code\NetCoreConsole\src\includes\SingleExeTrimmed.include.md
 Publish Command:
 
 ```
-dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExeTrimmed
+dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleFileTrimmed
 ```
 
 
