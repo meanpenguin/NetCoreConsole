@@ -13,7 +13,7 @@ toc
 snippet: MyConsole.csproj
 
 
-## Publish Profile
+## Publish Profiles
 
 Publish profiles are located in [src/MyConsole/Properties/PublishProfiles](/src/MyConsole/Properties/PublishProfiles)
 

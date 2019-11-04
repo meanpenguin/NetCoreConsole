@@ -31,20 +31,29 @@ public class Tests :
         };
         foreach (var profile in dictionary)
         {
-            var output = DotnetStarter.StartDotNet($@"publish {project} -c Release /p:PublishProfile={profile.Key}");
+            var output = ProcessRunner.StartDotNet("dotnet",$@"publish {project} -c Release /p:PublishProfile={profile.Key}");
             WriteLine(output);
             Assert.True(Directory.Exists(Path.Combine(publishDir, profile.Key)));
         }
+
         foreach (var profile in dictionary)
         {
             var profileDir = Path.GetFullPath(Path.Combine(publishDir, profile.Key));
-            var includeFile = Path.GetFullPath(Path.Combine(includesDir, profile.Key+".include.md"));
-            File.Delete(includeFile);
-            var files = Directory.GetFiles(profileDir);
-            var size = ByteSize.FromBytes(files.Sum(t => (new FileInfo(t).Length)));
-            File.WriteAllText(includeFile, $@"
+            WriteDoco(includesDir, profile.Key, profileDir);
+            var exePath = Path.Combine(profileDir, "MyConsole.exe");
+            var output = ProcessRunner.StartDotNet(exePath, "");
+            Assert.Contains("Hello World", output);
+        }
+    }
+
+    static void WriteDoco(string includesDir, string profile, string profileDir)
+    {
+        var includeFile = Path.GetFullPath(Path.Combine(includesDir, $"{profile}.include.md"));
+        File.Delete(includeFile);
+        var files = Directory.GetFiles(profileDir);
+        var size = ByteSize.FromBytes(files.Sum(t => (new FileInfo(t).Length)));
+        File.WriteAllText(includeFile, $@"
  * Files: {files.Length}
  * Size: {size.ToString()}");
-        }
     }
 }

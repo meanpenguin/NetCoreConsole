@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
 
-static class DotnetStarter
+static class ProcessRunner
 {
-    public static string StartDotNet(string arguments)
+    public static string StartDotNet(string exe, string arguments)
     {
         using var process = new Process
         {
             StartInfo = new ProcessStartInfo
             {
-                FileName = "dotnet",
+                FileName = exe,
                 Arguments = arguments,
                 UseShellExecute = false,
                 RedirectStandardOutput = true,

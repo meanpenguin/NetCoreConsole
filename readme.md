@@ -12,7 +12,7 @@ This shows how to use the various publish profile options when building a netcor
 ## Contents
 
   * [Console project settings](#console-project-settings)
-  * [Publish Profile](#publish-profile)
+  * [Publish Profiles](#publish-profiles)
     * [Default](#default)
     * [Framework Dependent](#framework-dependent)
     * [Single-File Exe](#single-file-exe)
@@ -49,7 +49,7 @@ This shows how to use the various publish profile options when building a netcor
 <!-- endsnippet -->
 
 
-## Publish Profile
+## Publish Profiles
 
 Publish profiles are located in [src/MyConsole/Properties/PublishProfiles](/src/MyConsole/Properties/PublishProfiles)
 
