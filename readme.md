@@ -7,7 +7,6 @@ To change this file edit the source file and then run MarkdownSnippets.
 
 This shows how to use the various publish profile options when building a netcore 3 console app.
 
-
 <!-- toc -->
 ## Contents
 
@@ -17,14 +16,16 @@ This shows how to use the various publish profile options when building a netcor
     * [Framework Dependent](#framework-dependent)
     * [Single-File Exe](#single-file-exe)
     * [Single Exe and Framework Dependent](#single-exe-and-framework-dependent)
-    * [Default Trimmed](#default-trimmed)
+    * [Trimmed](#trimmed)
+    * [Single Exe and Trimmed](#single-exe-and-trimmed)
 <!-- endtoc -->
 
 
 
 ## Console project settings
 
- * This sample targets one dependency (NodaTime) for illustrative purposes.
+ * This sample references and makes use of NodaTime to illustrate a dependency being consumed.
+ * This sample references, but does not use, Newtonsoft for illustrate a dependency being trimmed.
  * The [Runtime IDentifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) is hard coded to `win-x64`. All profiles will inherit this setting.
  * `AppendRuntimeIdentifierToOutputPath` and `AppendTargetFrameworkToOutputPath` are disabled to simplify the resulting directory structure. See [Change the build output directory](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-change-the-build-output-directory)
 
@@ -41,11 +42,12 @@ This shows how to use the various publish profile options when building a netcor
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="NodaTime" Version="2.4.0" />
   </ItemGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/MyConsole.csproj#L1-L13) / [anchor](#snippet-MyConsole.csproj)</sup>
+<sup>[snippet source](/src/MyConsole/MyConsole.csproj#L1-L14) / [anchor](#snippet-MyConsole.csproj)</sup>
 <!-- endsnippet -->
 
 
@@ -75,8 +77,8 @@ include: Default
 path: C:\Code\NetCoreConsole\src\includes\Default.include.md
 -->
 
- * Files: 225
- * Size: 66.25 MB
+ * Files: 226
+ * Size: 66.89 MB
 
 Publish Command:
 
@@ -87,7 +89,7 @@ dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=Default
 
 ### Framework Dependent
 
-Same as the Default but makes it [Framework-dependent](https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd):
+Same as the [Default](#default) but makes it [Framework-dependent](https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
 <!-- snippet: Fdd.pubxml -->
 <a id='snippet-Fdd.pubxml'/></a>
@@ -107,8 +109,8 @@ include: Fdd
 path: C:\Code\NetCoreConsole\src\includes\Fdd.include.md
 -->
 
- * Files: 5
- * Size: 614.67 KB
+ * Files: 6
+ * Size: 1.24 MB
 
 Notes:
 
@@ -123,7 +125,7 @@ dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=Fdd
 
 ### Single-File Exe
 
-Same as default but creates a [Single-file executables](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables):
+Same as [Default](#default) but creates a [Single-file executables](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables):
 
 <!-- snippet: SingleExe.pubxml -->
 <a id='snippet-SingleExe.pubxml'/></a>
@@ -144,7 +146,7 @@ path: C:\Code\NetCoreConsole\src\includes\SingleExe.include.md
 -->
 
  * Files: 1
- * Size: 66.26 MB
+ * Size: 66.9 MB
 
 Publish Command:
 
@@ -155,7 +157,7 @@ dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExe
 
 ### Single Exe and Framework Dependent
 
-Combines Framework Dependent and Single-File Exe:
+Combines [Single-File Exe](#single-file-exe) and [Framework Dependent](#framework-dependent):
 
 <!-- snippet: SingleExeFdd.pubxml -->
 <a id='snippet-SingleExeFdd.pubxml'/></a>
@@ -177,7 +179,7 @@ path: C:\Code\NetCoreConsole\src\includes\SingleExeFdd.include.md
 -->
 
  * Files: 1
- * Size: 614.84 KB
+ * Size: 1.24 MB
 
 Notes:
 
@@ -190,35 +192,66 @@ dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExe
 ```
 
 
-### Default Trimmed
+### Trimmed
 
-Same as the Default but uses [assembly-linking](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#assembly-linking):
+Same as the [Default](#default) but uses [assembly-linking](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#assembly-linking):
 
-<!-- snippet: DefaultTrimmed.pubxml -->
-<a id='snippet-DefaultTrimmed.pubxml'/></a>
+<!-- snippet: Trimmed.pubxml -->
+<a id='snippet-Trimmed.pubxml'/></a>
 ```pubxml
 <Project>
   <PropertyGroup>
-    <PublishDir>bin\Release\publish\DefaultTrimmed\</PublishDir>
+    <PublishDir>bin\Release\publish\Trimmed\</PublishDir>
     <PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/DefaultTrimmed.pubxml#L1-L6) / [anchor](#snippet-DefaultTrimmed.pubxml)</sup>
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Trimmed.pubxml#L1-L6) / [anchor](#snippet-Trimmed.pubxml)</sup>
 <!-- endsnippet -->
 
 <!--
-include: DefaultTrimmed
-path: C:\Code\NetCoreConsole\src\includes\DefaultTrimmed.include.md
+include: Trimmed
+path: C:\Code\NetCoreConsole\src\includes\Trimmed.include.md
 -->
 
- * Files: 103
- * Size: 33.06 MB
+ * Files: 112
+ * Size: 35.48 MB
 
 Publish Command:
 
 ```
-dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=DefaultTrimmed
+dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=Trimmed
 ```
 
-PublishTrimmed can also be applied to the other above profile examples.
+
+### Single Exe and Trimmed
+
+Combines [Single-File Exe](#single-file-exe) and [Trimmed](#trimmed):
+
+<!-- snippet: SingleExeTrimmed.pubxml -->
+<a id='snippet-SingleExeTrimmed.pubxml'/></a>
+```pubxml
+<Project>
+  <PropertyGroup>
+    <PublishDir>bin\Release\publish\SingleExeTrimmed\</PublishDir>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>true</PublishTrimmed>
+  </PropertyGroup>
+</Project>
+```
+<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleExeTrimmed.pubxml#L1-L7) / [anchor](#snippet-SingleExeTrimmed.pubxml)</sup>
+<!-- endsnippet -->
+
+<!--
+include: SingleExeTrimmed
+path: C:\Code\NetCoreConsole\src\includes\SingleExeTrimmed.include.md
+-->
+
+ * Files: 1
+ * Size: 35.48 MB
+
+Publish Command:
+
+```
+dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExeTrimmed
+```

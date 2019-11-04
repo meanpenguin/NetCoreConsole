@@ -24,14 +24,15 @@ public class Tests :
         var dictionary = new Dictionary<string, string>
         {
             {"Default", "Default"},
-            {"DefaultTrimmed", "Default Trimmed"},
+            {"Trimmed", "Trimmed"},
             {"Fdd", "Framework Dependent"},
             {"SingleExe", "Single Exe"},
-            {"SingleExeFdd", "Single Exe and Framework Dependent"}
+            {"SingleExeFdd", "Single Exe and Framework Dependent"},
+            {"SingleExeTrimmed", "Single Exe, Framework Dependent, and Trimmed"}
         };
         foreach (var profile in dictionary)
         {
-            var output = ProcessRunner.StartDotNet("dotnet",$@"publish {project} -c Release /p:PublishProfile={profile.Key}");
+            var output = ProcessRunner.StartDotNet("dotnet", $@"publish {project} -c Release /p:PublishProfile={profile.Key}");
             WriteLine(output);
             Assert.True(Directory.Exists(Path.Combine(publishDir, profile.Key)));
         }

@@ -1,12 +1,12 @@
 This shows how to use the various publish profile options when building a netcore 3 console app.
 
-
 toc
 
 
 ## Console project settings
 
- * This sample targets one dependency (NodaTime) for illustrative purposes.
+ * This sample references and makes use of NodaTime to illustrate a dependency being consumed.
+ * This sample references, but does not use, Newtonsoft for illustrate a dependency being trimmed.
  * The [Runtime IDentifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) is hard coded to `win-x64`. All profiles will inherit this setting.
  * `AppendRuntimeIdentifierToOutputPath` and `AppendTargetFrameworkToOutputPath` are disabled to simplify the resulting directory structure. See [Change the build output directory](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-change-the-build-output-directory)
 
@@ -35,7 +35,7 @@ dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=Default
 
 ### Framework Dependent
 
-Same as the Default but makes it [Framework-dependent](https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd):
+Same as the [Default](#default) but makes it [Framework-dependent](https://docs.microsoft.com/en-us/dotnet/core/deploying/#framework-dependent-deployments-fdd):
 
 snippet: Fdd.pubxml
 
@@ -54,7 +54,7 @@ dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=Fdd
 
 ### Single-File Exe
 
-Same as default but creates a [Single-file executables](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables):
+Same as [Default](#default) but creates a [Single-file executables](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables):
 
 snippet: SingleExe.pubxml
 
@@ -69,7 +69,7 @@ dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExe
 
 ### Single Exe and Framework Dependent
 
-Combines Framework Dependent and Single-File Exe:
+Combines [Single-File Exe](#single-file-exe) and [Framework Dependent](#framework-dependent):
 
 snippet: SingleExeFdd.pubxml
 
@@ -86,18 +86,31 @@ dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExe
 ```
 
 
-### Default Trimmed
+### Trimmed
 
-Same as the Default but uses [assembly-linking](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#assembly-linking):
+Same as the [Default](#default) but uses [assembly-linking](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#assembly-linking):
 
-snippet: DefaultTrimmed.pubxml
+snippet: Trimmed.pubxml
 
-include: DefaultTrimmed
+include: Trimmed
 
 Publish Command:
 
 ```
-dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=DefaultTrimmed
+dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=Trimmed
 ```
 
-PublishTrimmed can also be applied to the other above profile examples.
+
+### Single Exe and Trimmed
+
+Combines [Single-File Exe](#single-file-exe) and [Trimmed](#trimmed):
+
+snippet: SingleExeTrimmed.pubxml
+
+include: SingleExeTrimmed
+
+Publish Command:
+
+```
+dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExeTrimmed
+```
