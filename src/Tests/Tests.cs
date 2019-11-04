@@ -18,7 +18,7 @@ public class Tests :
     {
         var project = Path.GetFullPath(Path.Combine(SourceDirectory, @"..\MyConsole\MyConsole.csproj"));
         var publishDir = Path.GetFullPath(Path.Combine(SourceDirectory, @"..\MyConsole\bin\Release\publish"));
-        Directory.Delete(publishDir, true);
+        IoHelpers.PurgeDirectory(publishDir);
         var includesDir = Path.GetFullPath(Path.Combine(SourceDirectory, @"..\includes"));
         Directory.CreateDirectory(includesDir);
         var dictionary = new Dictionary<string, string>
@@ -44,6 +44,7 @@ public class Tests :
             var exePath = Path.Combine(profileDir, "MyConsole.exe");
             var output = ProcessRunner.StartDotNet(exePath, "");
             Assert.Contains("Hello World", output);
+            Assert.Contains("SettingValue", output);
         }
     }
 

@@ -18,6 +18,8 @@ This shows how to use the various publish profile options when building a netcor
     * [Single Exe and Framework Dependent](#single-exe-and-framework-dependent)
     * [Trimmed](#trimmed)
     * [Single Exe and Trimmed](#single-exe-and-trimmed)
+  * [ReadyToRun images](#readytorun-images)
+  * [Further Reading](#further-reading)
 <!-- endtoc -->
 
 
@@ -42,12 +44,16 @@ This shows how to use the various publish profile options when building a netcor
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="ContentFile.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="NodaTime" Version="2.4.0" />
+    <PackageReference Include="NodaTime" Version="2.4.7" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
   </ItemGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/MyConsole.csproj#L1-L14) / [anchor](#snippet-MyConsole.csproj)</sup>
+<sup>[snippet source](/src/MyConsole/MyConsole.csproj#L1-L18) / [anchor](#snippet-MyConsole.csproj)</sup>
 <!-- endsnippet -->
 
 
@@ -77,8 +83,8 @@ include: Default
 path: C:\Code\NetCoreConsole\src\includes\Default.include.md
 -->
 
- * Files: 226
- * Size: 66.89 MB
+ * Files: 234
+ * Size: 67.86 MB
 
 Publish Command:
 
@@ -109,8 +115,8 @@ include: Fdd
 path: C:\Code\NetCoreConsole\src\includes\Fdd.include.md
 -->
 
- * Files: 6
- * Size: 1.24 MB
+ * Files: 14
+ * Size: 2.21 MB
 
 Notes:
 
@@ -146,7 +152,7 @@ path: C:\Code\NetCoreConsole\src\includes\SingleExe.include.md
 -->
 
  * Files: 1
- * Size: 66.9 MB
+ * Size: 67.87 MB
 
 Publish Command:
 
@@ -179,7 +185,7 @@ path: C:\Code\NetCoreConsole\src\includes\SingleExeFdd.include.md
 -->
 
  * Files: 1
- * Size: 1.24 MB
+ * Size: 2.22 MB
 
 Notes:
 
@@ -214,8 +220,8 @@ include: Trimmed
 path: C:\Code\NetCoreConsole\src\includes\Trimmed.include.md
 -->
 
- * Files: 112
- * Size: 35.48 MB
+ * Files: 124
+ * Size: 36.61 MB
 
 Publish Command:
 
@@ -248,10 +254,25 @@ path: C:\Code\NetCoreConsole\src\includes\SingleExeTrimmed.include.md
 -->
 
  * Files: 1
- * Size: 35.48 MB
+ * Size: 36.62 MB
 
 Publish Command:
 
 ```
 dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExeTrimmed
 ```
+
+
+## ReadyToRun images
+
+ReadyToRun images (`<PublishReadyToRun>true</PublishReadyToRun>`) are not covered in the above scenarios, but should be considered as an option for production apps.
+
+> R2R binaries improve startup performance by reducing the amount of work the JIT needs to do as your application is loading. The binaries contain similar native code as what the JIT would produce, giving the JIT a bit of a vacation when performance matters most (at startup). R2R binaries are larger because they contain both intermediate language (IL) code, which is still needed for some scenarios, and the native version of the same code, to improve startup. - https://devblogs.microsoft.com/dotnet/announcing-net-core-3-0/
+
+
+## Further Reading
+
+ * [Announcing .NET Core 3.0](https://devblogs.microsoft.com/dotnet/announcing-net-core-3-0/)
+ * [What's new in .NET Core 3.0](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0)
+ * [Making a tiny .NET Core 3.0 entirely self-contained single executable - Scott Hanselman](https://www.hanselman.com/blog/MakingATinyNETCore30EntirelySelfcontainedSingleExecutable.aspx)
+ * [Create a Trimmed Self-Contained Single Executable in .NET Core 3.0](https://www.talkingdotnet.com/create-trimmed-self-contained-executable-in-net-core-3-0/)

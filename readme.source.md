@@ -114,3 +114,18 @@ Publish Command:
 ```
 dotnet publish MyConsole\MyConsole.csproj -c Release /p:PublishProfile=SingleExeTrimmed
 ```
+
+
+## ReadyToRun images
+
+ReadyToRun images (`<PublishReadyToRun>true</PublishReadyToRun>`) are not covered in the above scenarios, but should be considered as an option for production apps.
+
+> R2R binaries improve startup performance by reducing the amount of work the JIT needs to do as your application is loading. The binaries contain similar native code as what the JIT would produce, giving the JIT a bit of a vacation when performance matters most (at startup). R2R binaries are larger because they contain both intermediate language (IL) code, which is still needed for some scenarios, and the native version of the same code, to improve startup. - https://devblogs.microsoft.com/dotnet/announcing-net-core-3-0/
+
+
+## Further Reading
+
+ * [Announcing .NET Core 3.0](https://devblogs.microsoft.com/dotnet/announcing-net-core-3-0/)
+ * [What's new in .NET Core 3.0](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0)
+ * [Making a tiny .NET Core 3.0 entirely self-contained single executable - Scott Hanselman](https://www.hanselman.com/blog/MakingATinyNETCore30EntirelySelfcontainedSingleExecutable.aspx)
+ * [Create a Trimmed Self-Contained Single Executable in .NET Core 3.0](https://www.talkingdotnet.com/create-trimmed-self-contained-executable-in-net-core-3-0/)
