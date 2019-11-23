@@ -2,11 +2,12 @@
 using System.IO;
 using System.Linq;
 using ByteSizeLib;
+using VerifyXunit;
 using Xunit;
 using Xunit.Abstractions;
 
 public class Tests :
-    XunitApprovalBase
+    VerifyBase
 {
     public Tests(ITestOutputHelper output) :
         base(output)
