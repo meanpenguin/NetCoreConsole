@@ -19,9 +19,7 @@ This shows how to use the various publish options when building a netcore 3 cons
     * [Trimmed](#trimmed)
     * [Single File and Trimmed](#single-file-and-trimmed)
   * [ReadyToRun images](#readytorun-images)
-  * [Further Reading](#further-reading)
-<!-- endtoc -->
-
+  * [Further Reading](#further-reading)<!-- endtoc -->
 
 
 ## Console project settings
@@ -37,7 +35,7 @@ This shows how to use the various publish options when building a netcore 3 cons
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
     <PublishDir>publish\$(PublishProfile)\</PublishDir>
   </PropertyGroup>
@@ -47,11 +45,11 @@ This shows how to use the various publish options when building a netcore 3 cons
     </Content>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="NodaTime" Version="2.4.7" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
   </ItemGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/MyConsole.csproj#L1-L16) / [anchor](#snippet-MyConsole.csproj)</sup>
+<sup><a href='/src/MyConsole/MyConsole.csproj#L1-L16' title='File snippet `MyConsole.csproj` was extracted from'>snippet source</a> | <a href='#snippet-MyConsole.csproj' title='Navigate to start of snippet `MyConsole.csproj`'>anchor</a></sup>
 <!-- endsnippet -->
 
 
@@ -72,16 +70,12 @@ Uses an empty (default) publish profile:
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Default.pubxml#L1-L4) / [anchor](#snippet-Default.pubxml)</sup>
+<sup><a href='/src/MyConsole/Properties/PublishProfiles/Default.pubxml#L1-L4' title='File snippet `Default.pubxml` was extracted from'>snippet source</a> | <a href='#snippet-Default.pubxml' title='Navigate to start of snippet `Default.pubxml`'>anchor</a></sup>
 <!-- endsnippet -->
 
-<!--
-include: Default
-path: C:\Code\NetCoreConsole\src\includes\Default.include.md
--->
-
+ <!-- include: Default. path: /src/includes/Default.include.md -->
  * Files: 234
- * Size: 67.86 MB
+ * Size: 71.3 MB <!-- end include: Default. path: /src/includes/Default.include.md -->
 
 Publish Command:
 
@@ -105,16 +99,12 @@ Same as the [Default](#default) but makes it [Framework-dependent](https://docs.
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Fdd.pubxml#L1-L5) / [anchor](#snippet-Fdd.pubxml)</sup>
+<sup><a href='/src/MyConsole/Properties/PublishProfiles/Fdd.pubxml#L1-L5' title='File snippet `Fdd.pubxml` was extracted from'>snippet source</a> | <a href='#snippet-Fdd.pubxml' title='Navigate to start of snippet `Fdd.pubxml`'>anchor</a></sup>
 <!-- endsnippet -->
 
-<!--
-include: Fdd
-path: C:\Code\NetCoreConsole\src\includes\Fdd.include.md
--->
-
+ <!-- include: Fdd. path: /src/includes/Fdd.include.md -->
  * Files: 14
- * Size: 2.21 MB
+ * Size: 2.36 MB <!-- end include: Fdd. path: /src/includes/Fdd.include.md -->
 
 Notes:
 
@@ -142,16 +132,12 @@ Same as [Default](#default) but creates a [Single-file executables](https://docs
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleFile.pubxml#L1-L5) / [anchor](#snippet-SingleFile.pubxml)</sup>
+<sup><a href='/src/MyConsole/Properties/PublishProfiles/SingleFile.pubxml#L1-L5' title='File snippet `SingleFile.pubxml` was extracted from'>snippet source</a> | <a href='#snippet-SingleFile.pubxml' title='Navigate to start of snippet `SingleFile.pubxml`'>anchor</a></sup>
 <!-- endsnippet -->
 
-<!--
-include: SingleFile
-path: C:\Code\NetCoreConsole\src\includes\SingleFile.include.md
--->
-
+ <!-- include: SingleFile. path: /src/includes/SingleFile.include.md -->
  * Files: 1
- * Size: 67.87 MB
+ * Size: 71.32 MB <!-- end include: SingleFile. path: /src/includes/SingleFile.include.md -->
 
 Notes:
 
@@ -176,16 +162,12 @@ Combines [Single-File](#single-file) and [Framework Dependent](#framework-depend
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleFileFdd.pubxml#L1-L6) / [anchor](#snippet-SingleFileFdd.pubxml)</sup>
+<sup><a href='/src/MyConsole/Properties/PublishProfiles/SingleFileFdd.pubxml#L1-L6' title='File snippet `SingleFileFdd.pubxml` was extracted from'>snippet source</a> | <a href='#snippet-SingleFileFdd.pubxml' title='Navigate to start of snippet `SingleFileFdd.pubxml`'>anchor</a></sup>
 <!-- endsnippet -->
 
-<!--
-include: SingleFileFdd
-path: C:\Code\NetCoreConsole\src\includes\SingleFileFdd.include.md
--->
-
+ <!-- include: SingleFileFdd. path: /src/includes/SingleFileFdd.include.md -->
  * Files: 1
- * Size: 2.22 MB
+ * Size: 2.36 MB <!-- end include: SingleFileFdd. path: /src/includes/SingleFileFdd.include.md -->
 
 Notes:
 
@@ -213,16 +195,12 @@ Same as the [Default](#default) but uses [assembly-linking](https://docs.microso
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/Trimmed.pubxml#L1-L5) / [anchor](#snippet-Trimmed.pubxml)</sup>
+<sup><a href='/src/MyConsole/Properties/PublishProfiles/Trimmed.pubxml#L1-L5' title='File snippet `Trimmed.pubxml` was extracted from'>snippet source</a> | <a href='#snippet-Trimmed.pubxml' title='Navigate to start of snippet `Trimmed.pubxml`'>anchor</a></sup>
 <!-- endsnippet -->
 
-<!--
-include: Trimmed
-path: C:\Code\NetCoreConsole\src\includes\Trimmed.include.md
--->
-
+ <!-- include: Trimmed. path: /src/includes/Trimmed.include.md -->
  * Files: 124
- * Size: 36.61 MB
+ * Size: 38.44 MB <!-- end include: Trimmed. path: /src/includes/Trimmed.include.md -->
 
 Publish Command:
 
@@ -245,16 +223,12 @@ Combines [Single File](#single-file) and [Trimmed](#trimmed):
   </PropertyGroup>
 </Project>
 ```
-<sup>[snippet source](/src/MyConsole/Properties/PublishProfiles/SingleFileTrimmed.pubxml#L1-L6) / [anchor](#snippet-SingleFileTrimmed.pubxml)</sup>
+<sup><a href='/src/MyConsole/Properties/PublishProfiles/SingleFileTrimmed.pubxml#L1-L6' title='File snippet `SingleFileTrimmed.pubxml` was extracted from'>snippet source</a> | <a href='#snippet-SingleFileTrimmed.pubxml' title='Navigate to start of snippet `SingleFileTrimmed.pubxml`'>anchor</a></sup>
 <!-- endsnippet -->
 
-<!--
-include: SingleFileTrimmed
-path: C:\Code\NetCoreConsole\src\includes\SingleFileTrimmed.include.md
--->
-
+ <!-- include: SingleFileTrimmed. path: /src/includes/SingleFileTrimmed.include.md -->
  * Files: 1
- * Size: 36.62 MB
+ * Size: 38.45 MB <!-- end include: SingleFileTrimmed. path: /src/includes/SingleFileTrimmed.include.md -->
 
 Publish Command:
 
