@@ -33,7 +33,7 @@ public class Tests :
         };
         foreach (var profile in dictionary)
         {
-            var output = ProcessRunner.StartDotNet("dotnet", $@"publish {project} -c Release /p:PublishProfile={profile.Key}");
+            var output = ProcessRunner.StartDotNet("dotnet", $"publish {project} -c Release /p:PublishProfile={profile.Key}");
             WriteLine(output);
             Assert.True(Directory.Exists(Path.Combine(publishDir, profile.Key)));
         }
@@ -54,7 +54,7 @@ public class Tests :
         var includeFile = Path.GetFullPath(Path.Combine(includesDir, $"{profile}.include.md"));
         File.Delete(includeFile);
         var files = Directory.GetFiles(profileDir);
-        var size = ByteSize.FromBytes(files.Sum(t => (new FileInfo(t).Length)));
+        var size = ByteSize.FromBytes(files.Sum(t => new FileInfo(t).Length));
         File.WriteAllText(includeFile, $@"
  * Files: {files.Length}
  * Size: {size.ToString()}");
